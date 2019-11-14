@@ -1,0 +1,47 @@
+[debug] [2019-11-14T12:48:04.477Z] ----------------------------------------------------------------------
+[debug] [2019-11-14T12:48:04.480Z] Command:       /usr/local/bin/firebase /Users/scottjoyner/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase init
+[debug] [2019-11-14T12:48:04.481Z] CLI Version:   7.7.0
+[debug] [2019-11-14T12:48:04.481Z] Platform:      darwin
+[debug] [2019-11-14T12:48:04.481Z] Node Version:  v10.15.3
+[debug] [2019-11-14T12:48:04.933Z] Time:          Thu Nov 14 2019 07:48:04 GMT-0500 (Eastern Standard Time)
+[debug] [2019-11-14T12:48:04.933Z] ----------------------------------------------------------------------
+[debug] [2019-11-14T12:48:04.933Z] 
+[debug] [2019-11-14T12:48:04.945Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-11-14T12:48:04.947Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/scottjoyner/git/scj.dev
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project.
+[debug] [2019-11-14T12:55:15.376Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects  
+
+[debug] [2019-11-14T12:55:15.694Z] <<< HTTP RESPONSE 409
+[debug] [2019-11-14T12:55:15.694Z] <<< HTTP RESPONSE BODY
+[debug] [2019-11-14T12:55:15.797Z] HTTP Error: 409, Requested entity already exists
+[debug] [2019-11-14T12:55:15.970Z] FirebaseError: HTTP Error: 409, Requested entity already exists
+    at module.exports (/Users/scottjoyner/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/responseToError.js:38:12)
+    at Request._callback (/Users/scottjoyner/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/api.js:39:35)
+    at Request.self.callback (/Users/scottjoyner/.cache/firebase/tools/lib/node_modules/request/request.js:185:22)
+    at Request.emit (events.js:189:13)
+    at Request.EventEmitter.emit (domain.js:441:20)
+    at Request.<anonymous> (/Users/scottjoyner/.cache/firebase/tools/lib/node_modules/request/request.js:1161:10)
+    at Request.emit (events.js:189:13)
+    at Request.EventEmitter.emit (domain.js:441:20)
+    at IncomingMessage.<anonymous> (/Users/scottjoyner/.cache/firebase/tools/lib/node_modules/request/request.js:1083:12)
+    at Object.onceWrapper (events.js:277:13)
+[error] 
+[error] Error: Failed to create Google Cloud project. See firebase-debug.log for more info.

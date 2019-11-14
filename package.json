@@ -1,0 +1,12 @@
+{
+  "name": "scj.dev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "author": "Kipnerter",
+  "license": "ISC"
+}
