@@ -40,6 +40,7 @@ test('allowlisted static files only; deny sensitive paths and escaping symlinks'
   fs.writeFileSync(path.join(root, 'package.json'), '{"secret":true}');
   fs.writeFileSync(path.join(parent, 'outside.js'), 'SECRET OUTSIDE');
   fs.symlinkSync(path.join(parent, 'outside.js'), path.join(root, 'js', 'outside.js'));
+  fs.symlinkSync(path.join(root, 'server.js'), path.join(root, 'js', 'source.js'));
   const server = createStaticServer(root);
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
   try {
@@ -58,7 +59,7 @@ test('allowlisted static files only; deny sensitive paths and escaping symlinks'
     assert.equal((await request(port, '/absent.html')).status, 404);
     for (const uri of [
       '/server.js', '/package.json', '/.env', '/firebase-debug.log',
-      '/js/outside.js', '/../server.js', '/%2e%2e/server.js',
+      '/js/outside.js', '/js/source.js', '/../server.js', '/%2e%2e/server.js',
       '/js/%2e%2e/server.js', '/js/%2fapp.js', '/js/%5capp.js',
       '/js/.hidden.js', '/js/../../outside.js', '/js/bad%ZZ.js',
     ]) {
