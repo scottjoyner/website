@@ -74,6 +74,8 @@ function createStaticServer(documentRoot = __dirname) {
     try {
       const actual = await fs.promises.realpath(resolved.target);
       if (!inside(root, actual)) return error(res, 403, 'Forbidden');
+      const effectiveUrl = '/' + path.relative(root, actual).split(path.sep).join('/');
+      if (!requestedFile(root, effectiveUrl)) return error(res, 403, 'Forbidden');
       const info = await fs.promises.stat(actual);
       if (!info.isFile()) return error(res, 404, 'Not found');
       const body = await fs.promises.readFile(actual);
