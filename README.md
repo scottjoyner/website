@@ -13,9 +13,24 @@ Historical personal website built from static HTML/CSS/JavaScript pages, with li
 
 ## Local inspection
 
-Use a source viewer to review static pages first. A development-only launch with Node.js would use `npm start`, but the Node server constructs filesystem paths from request URLs. **Do not expose that experimental server to the public Internet or deploy it as-is.** Use a maintained, hardened static web server with explicit document-root confinement and access logging instead.
+Use a source viewer to review static pages first. On the **hardening branch**, the Node.js server enforces a static-file allowlist, rejects traversal and escaped symlinks, serves only GET/HEAD requests, returns 404 for absent files, and binds to loopback by default. It is still a **legacy development server, not a recommended production deployment**. For public hosting, use a maintained, hardened static web server with explicitly reviewed routes, a production CSP, access logging, and independent security testing.
 
 The Python alternative depends on Flask and has different static asset paths; no verified requirements file or runtime setup is documented.
+
+## Hardened development-server candidate
+
+On branch `hardening/static-server-path-20261022`, the Node.js static-server candidate is designed for **local-only** development:
+
+```bash
+npm start
+# default: http://127.0.0.1:8125
+node --test server.test.js
+```
+
+The server accepts `PORT` and `HOST` as environment settings; changing `HOST` to a non-loopback interface exposes the server and requires a separate security review. The server publishes root HTML pages and selected asset types from `css/`, `js/`, `fonts/`, `font-awesome/`, and `images/`; repository source, dotfiles, manifest JSON, logs, and other files are not public by default. There is no automated directory listing or query-driven file selection.
+
+**Validation:** An isolated Node.js 22 run using the exact GitHub source/test blobs passed the regression harness on 2026-10-22, including unauthorized internal-source symlinks and directory escape attempts. This is not a penetration test or a proof of production readiness. No live site was restarted or deployed.
+
 
 ## Security and provenance
 
